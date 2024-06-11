@@ -12,8 +12,8 @@ def roman_to_int(s: str) -> int:
     # Validate the input for any empty string or invalid characters
     if not s:
         return 0
-    if not re.match(r'^[IVXLCDM]+$', s):
-        return None
+    if not all(char in roman_dict for char in s):
+        return None    
 
     # Validation for invalid repeat sequences
     if re.search(r'(IIII|VV|XXXX|LL|CCCC|DD|MMMM)', s):
