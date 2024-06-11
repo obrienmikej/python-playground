@@ -16,7 +16,7 @@ def roman_to_int(s: str) -> int:
 
     # Handle empty strng case
     if not s:
-        return None
+        raise ValueError("Input string is empty")
 
     # Initialize variables
     prev_value = 0
