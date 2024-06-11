@@ -21,7 +21,7 @@ def roman_to_int(s: str) -> int:
 
     # Iterate over the Roman numeral from the end to the beginning
     for char in reversed(s):
-        value = roman_dict[char]
+        value = roman_dict.get(char, 0)  # Use get with default value
 
         # Handle subtractions (special cases)
         if value < prev_value:
@@ -52,6 +52,7 @@ class TestRomanToInt(unittest.TestCase):
         self.assertEqual(roman_to_int("MCMXCIV"), 1994)
         self.assertEqual(roman_to_int("LXXXIV"), 84)
         self.assertEqual(roman_to_int("CCXLVI"), 246)
+        self.assertEqual(roman_to_int("MMMCMXCIX"), 3999)
     
     def test_invalid_roman_numerals(self):
         self.assertIsNone(roman_to_int("A"))
@@ -63,10 +64,15 @@ class TestRomanToInt(unittest.TestCase):
         self.assertIsNone(roman_to_int("CCCC"))
         self.assertIsNone(roman_to_int("XD"))
         self.assertIsNone(roman_to_int("IIIIX"))
+        self.assertIsNone(roman_to_int("LC"))
+        self.assertIsNone(roman_to_int("DM"))        
 
     def test_edge_cases(self):
         self.assertEqual(roman_to_int(""), 0)
         self.assertIsNone(roman_to_int(" "))  # Invalid due to space
+        self.assertIsNone(roman_to_int(None))  # Invalid due to None input
+        self.assertIsNone(roman_to_int("IIIIIIII"))  # Long invalid sequence
+        self.assertIsNone(roman_to_int("VVVV"))  # Repeated invalid numeral        
 
 if __name__ == "__main__":
     unittest.main(argv=[''], exit=False)
