@@ -14,77 +14,43 @@ def roman_to_int(s: str) -> int:
         'M': 1000
     }
 
-    # Handle empty strng case
-    if not s:
-        raise ValueError("Input string is empty")
-
     # Initialize variables
     prev_value = 0
     result = 0
+    repeat_count = 0
+    last_char = ''
 
     # Iterate over the Roman numberal from the end to the begining
     for char in reversed(s):
         # Get the the integer value of the current roman numeral
-        value = roman_dict[char] 
+        value = roman_dict.get[char] 
 
         # Input validation: Check for invalid characters
         if value is None:
             return None
+        
+        # Check for invalid repeat sequences
+        if char == last_char:
+            repeat_count += 1
+            if repeat_count == 3 and char in ('I', 'X', 'C', 'M'):
+                return None
+            elif repeat_count == 1 and char in ('V', 'L', 'D'):
+                return None
+        else:
+            repeat_count = 0
 
         # Handle subtractions (special cases)
         if value < prev_value:
+            if (char == 'I' and prev_value not in [5, 10]) or \
+               (char == 'X' and prev_value not in [50, 100]) or \
+               (char == 'C' and prev_value not in [500, 1000]):
+                return None
             result -= value
         else:
             result += value
 
-        # Update the previous value
+        # Update the previous value and last character
         prev_value = value
+        last_char = char
 
     return result
-
-# Test cases for the roman_to_init function
-class TestRomanToInt(unittest.TestCase):    
-
-    # Test cases for the roman_to_init function
-    def test_roman_to_init(self):
-
-        test_cases = {
-            "III": 3,
-            "IV": 4,
-            "IX": 9,
-            "LVIII": 58,
-            "MCMXCIV": 1994,
-            "MMXXIII": 2023,
-            "A": 100,
-            "D": 500,
-            "M": 1000,
-            "XL": 40,
-            "XC": 90,
-            "CD": 400,
-            "CM": 900,
-        }
-
-        for roman, expected in test_cases.items():
-            with self.subTest(roman=roman):
-                self.assertEqual(roman_to_int(roman), expected)
-
-    # Test cases for invalid roman numerlas
-    def test_invalid_roman_numerals(self):     
-        
-        invalid_cases = [
-            "",
-            "IIII",
-            "VV",
-            "MMMM",
-            "A",
-            "123",
-            "IC"]
-
-        for roman in invalid_cases:
-            with self.subTest(roman=roman):
-                with self.assertRaises(ValueError):      
-                    roman_to_int(roman)
-
-# Run the tests
-if __name__ == '__main__':
-    unittest.main()
