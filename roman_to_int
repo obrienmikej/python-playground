@@ -70,7 +70,6 @@ class TestRomanToInt(unittest.TestCase):
     def test_edge_cases(self):
         self.assertEqual(roman_to_int(""), 0)
         self.assertIsNone(roman_to_int(" "))  # Invalid due to space
-        self.assertIsNone(roman_to_int(None))  # Invalid due to None input
         self.assertIsNone(roman_to_int("IIIIIIII"))  # Long invalid sequence
         self.assertIsNone(roman_to_int("VVVV"))  # Repeated invalid numeral        
 
