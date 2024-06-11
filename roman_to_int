@@ -1,29 +1,14 @@
-import unittest
-
-# Convert a roman numeral to an ineger
 def roman_to_int(s: str) -> int:
-
     # Dictionary to map each Roman numeral character to its respective integer value
     roman_dict = {
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000
+        'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500,'M': 1000
     }
-
-    # Initialize variables
     prev_value = 0
     result = 0
-    repeat_count = 0
-    last_char = ''
 
-    # Iterate over the Roman numberal from the end to the begining
+    # Iterate over the Roman numeral from the end to the beginning
     for char in reversed(s):
-        # Get the the integer value of the current roman numeral
-        value = roman_dict.get[char] 
+        value = roman_dict.get(char)
 
         # Input validation: Check for invalid characters
         if value is None:
@@ -38,7 +23,7 @@ def roman_to_int(s: str) -> int:
                 return None
         else:
             repeat_count = 0
-
+        
         # Handle subtractions (special cases)
         if value < prev_value:
             if (char == 'I' and prev_value not in [5, 10]) or \
@@ -54,3 +39,43 @@ def roman_to_int(s: str) -> int:
         last_char = char
 
     return result
+
+import unittest
+
+class TestRomanToInt(unittest.TestCase):
+    def test_valid_roman_numerals(self):
+        # Simple cases
+        self.assertEqual(roman_to_int("I"), 1)
+        self.assertEqual(roman_to_int("V"), 5)
+        self.assertEqual(roman_to_int("X"), 10)
+        
+        # Compound cases
+        self.assertEqual(roman_to_int("VI"), 6)
+        self.assertEqual(roman_to_int("IV"), 4)
+        self.assertEqual(roman_to_int("IX"), 9)
+        
+        # Larger numbers
+        self.assertEqual(roman_to_int("MMXXIII"), 2023)
+        self.assertEqual(roman_to_int("CMXCIX"), 999)
+        self.assertEqual(roman_to_int("MCMXCIV"), 1994)
+        
+    def test_invalid_roman_numerals(self):
+        # Invalid characters
+        self.assertIsNone(roman_to_int("A"))
+        self.assertIsNone(roman_to_int("IIII"))
+        
+        # Invalid sequences
+        self.assertIsNone(roman_to_int("IC"))
+        self.assertIsNone(roman_to_int("IL"))
+        
+    def test_edge_cases(self):
+        # Empty string
+        self.assertEqual(roman_to_int(""), 0)
+        
+        # Single character
+        self.assertEqual(roman_to_int("I"), 1)
+        self.assertEqual(roman_to_int("V"), 5)
+        self.assertEqual(roman_to_int("X"), 10)
+
+if __name__ == "__main__":
+    unittest.main(argv=[''], exit=False)
