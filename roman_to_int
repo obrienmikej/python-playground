@@ -50,6 +50,8 @@ class TestRomanToInt(unittest.TestCase):
         self.assertEqual(roman_to_int("MMXXIII"), 2023)
         self.assertEqual(roman_to_int("CMXCIX"), 999)
         self.assertEqual(roman_to_int("MCMXCIV"), 1994)
+        self.assertEqual(roman_to_int("LXXXIV"), 84)
+        self.assertEqual(roman_to_int("CCXLVI"), 246)
     
     def test_invalid_roman_numerals(self):
         self.assertIsNone(roman_to_int("A"))
@@ -59,12 +61,15 @@ class TestRomanToInt(unittest.TestCase):
         self.assertIsNone(roman_to_int("IL"))
         self.assertIsNone(roman_to_int("VX"))
         self.assertIsNone(roman_to_int("CCCC"))
+        self.assertIsNone(roman_to_int("XD"))
+        self.assertIsNone(roman_to_int("IIIIX"))
 
     def test_edge_cases(self):
         self.assertEqual(roman_to_int(""), 0)
         self.assertEqual(roman_to_int("I"), 1)
         self.assertEqual(roman_to_int("V"), 5)
         self.assertEqual(roman_to_int("X"), 10)
+        self.assertIsNone(roman_to_int(" "))
 
 if __name__ == "__main__":
     unittest.main(argv=[''], exit=False)
