@@ -14,6 +14,10 @@ def roman_to_int(s: str) -> int:
         'M': 1000
     }
 
+    # Handle empty strng case
+    if not s:
+        return None
+
     # Initialize variables
     prev_value = 0
     result = 0
@@ -21,9 +25,13 @@ def roman_to_int(s: str) -> int:
     # Iterate over the Roman numberal from the end to the begining
     for char in reversed(s):
         # Get the the integer value of the current roman numeral
-        value = roman_dict[char] 
+        value = roman_dict.get[char] # uea get()to handle invalid characters
 
-        # If the current value is less than the previous value, subtract it
+        # Input validation: Check for invalid characters
+        if value is None:
+            return None
+
+        # Handle subtractions (special cases)
         if value < prev_value:
             result -= value
         else:
