@@ -1,0 +1,40 @@
+# Function to convert roman numerals to an ineger
+def roman_to_int(s: str) -> int:
+
+    # Dictionary to map each Roman numeral character to its respective integer value
+    roman_dict = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
+    }
+
+    # Initialize variables
+    prev_value = 0
+    total = 0
+
+    # Iterate over the Roman numberal from the end to the begining
+    for char in reversed(s):
+        # Get the the integer value of the current roman numeral
+        value = roman_dict[char] 
+
+        # If the current value is less than the previous value, subtract it
+        if value < prev_value:
+            total -= value
+        else:
+            total += value
+
+        # Update the previous value
+        prev_value = value
+
+    return total
+
+# Test the function
+print(roman_to_int("III"))     # output: 3
+print(roman_to_int("IV"))      # output: 4
+print(roman_to_int("IX"))      # output: 9
+print(roman_to_int("LVIII"))   # output: 58
+print(roman_to_int("MCMXCIV")) # output: 1994
