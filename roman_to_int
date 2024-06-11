@@ -1,10 +1,17 @@
 def roman_to_int(s: str) -> int:
-    # Dictionary to map each Roman numeral character to its respective integer value
     roman_dict = {
-        'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500,'M': 1000
+        'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000
     }
     prev_value = 0
     result = 0
+
+    # Validate the input for any empty string
+    if not s:
+        return 0
+
+    # Final validation for invalid repeat sequences
+    if "IIII" in s or "VV" in s or "XXXX" in s or "LL" in s or "CCCC" in s or "DD" in s or "MMMM" in s:
+        return None
 
     # Iterate over the Roman numeral from the end to the beginning
     for char in reversed(s):
@@ -13,30 +20,20 @@ def roman_to_int(s: str) -> int:
         # Input validation: Check for invalid characters
         if value is None:
             return None
-        
-        # Check for invalid repeat sequences
-        if char == last_char:
-            repeat_count += 1
-            if repeat_count == 3 and char in ('I', 'X', 'C', 'M'):
-                return None
-            elif repeat_count == 1 and char in ('V', 'L', 'D'):
-                return None
-        else:
-            repeat_count = 0
-        
+
         # Handle subtractions (special cases)
         if value < prev_value:
-            if (char == 'I' and prev_value not in [5, 10]) or \
-               (char == 'X' and prev_value not in [50, 100]) or \
-               (char == 'C' and prev_value not in [500, 1000]):
+            # Check for valid subtraction combinations
+            if (char == 'I' and prev_value in {5, 10}) or \
+               (char == 'X' and prev_value in {50, 100}) or \
+               (char == 'C' and prev_value in {500, 1000}):
+                result -= value
+            else:
                 return None
-            result -= value
         else:
             result += value
 
-        # Update the previous value and last character
         prev_value = value
-        last_char = char
 
     return result
 
@@ -44,35 +41,27 @@ import unittest
 
 class TestRomanToInt(unittest.TestCase):
     def test_valid_roman_numerals(self):
-        # Simple cases
         self.assertEqual(roman_to_int("I"), 1)
         self.assertEqual(roman_to_int("V"), 5)
         self.assertEqual(roman_to_int("X"), 10)
-        
-        # Compound cases
         self.assertEqual(roman_to_int("VI"), 6)
         self.assertEqual(roman_to_int("IV"), 4)
         self.assertEqual(roman_to_int("IX"), 9)
-        
-        # Larger numbers
         self.assertEqual(roman_to_int("MMXXIII"), 2023)
         self.assertEqual(roman_to_int("CMXCIX"), 999)
         self.assertEqual(roman_to_int("MCMXCIV"), 1994)
-        
+    
     def test_invalid_roman_numerals(self):
-        # Invalid characters
         self.assertIsNone(roman_to_int("A"))
         self.assertIsNone(roman_to_int("IIII"))
-        
-        # Invalid sequences
+        self.assertIsNone(roman_to_int("VV"))
         self.assertIsNone(roman_to_int("IC"))
         self.assertIsNone(roman_to_int("IL"))
-        
+        self.assertIsNone(roman_to_int("VX"))
+        self.assertIsNone(roman_to_int("CCCC"))
+
     def test_edge_cases(self):
-        # Empty string
         self.assertEqual(roman_to_int(""), 0)
-        
-        # Single character
         self.assertEqual(roman_to_int("I"), 1)
         self.assertEqual(roman_to_int("V"), 5)
         self.assertEqual(roman_to_int("X"), 10)
