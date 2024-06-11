@@ -1,3 +1,5 @@
+import unittest
+
 # Function to convert roman numerals to an ineger
 def roman_to_int(s: str) -> int:
 
@@ -32,9 +34,23 @@ def roman_to_int(s: str) -> int:
 
     return total
 
-# Test the function
-print(roman_to_int("III"))     # output: 3
-print(roman_to_int("IV"))      # output: 4
-print(roman_to_int("IX"))      # output: 9
-print(roman_to_int("LVIII"))   # output: 58
-print(roman_to_int("MCMXCIV")) # output: 1994
+class TestRomanToInit(unittest.TestCase):
+
+    def test_roman_to_init(self):
+        self.assertEqual(roman_to_int("III"), 3)
+        self.assertEqual(roman_to_int("IV"), 4)
+        self.assertEqual(roman_to_int("IX"), 9)
+        self.assertEqual(roman_to_int("LVIII"), 58)
+        self.assertEqual(roman_to_int("MCMXCIV"), 1994)
+        self.assertEqual(roman_to_int("MMXXIII"), 2023)
+        self.assertEqual(roman_to_int("C"), 100)
+        self.assertEqual(roman_to_int("D"), 500)
+        self.assertEqual(roman_to_int("M"), 1000)
+        self.assertEqual(roman_to_int("XL"), 40)
+        self.assertEqual(roman_to_int("XC"), 90)
+        self.assertEqual(roman_to_int("CD"), 400)
+        self.assertEqual(roman_to_int("CM"), 900)        
+
+# Run the tests
+if __name__ == '__main__':
+    unittest.main()
