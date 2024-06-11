@@ -25,8 +25,7 @@ def roman_to_int(s: str) -> int:
     # Iterate over the Roman numberal from the end to the begining
     for char in reversed(s):
         # Get the the integer value of the current roman numeral
-        value = roman_dict[char] # uea get()to handle invalid characters
-        #value = roman_dict.get[char] # uea get()to handle invalid characters
+        value = roman_dict[char] 
 
         # Input validation: Check for invalid characters
         if value is None:
@@ -43,7 +42,7 @@ def roman_to_int(s: str) -> int:
 
     return result
 
-# Unit tests for the roman_to_init function
+# Test cases for the roman_to_init function
 class TestRomanToInt(unittest.TestCase):    
 
     # Test cases for the roman_to_init function
@@ -56,7 +55,7 @@ class TestRomanToInt(unittest.TestCase):
             "LVIII": 58,
             "MCMXCIV": 1994,
             "MMXXIII": 2023,
-            "C": 100,
+            "A": 100,
             "D": 500,
             "M": 1000,
             "XL": 40,
@@ -68,6 +67,23 @@ class TestRomanToInt(unittest.TestCase):
         for roman, expected in test_cases.items():
             with self.subTest(roman=roman):
                 self.assertEqual(roman_to_int(roman), expected)
+
+    # Test cases for invalid roman numerlas
+    def test_invalid_roman_numerals(self):     
+        
+        invalid_cases = [
+            "",
+            "IIII",
+            "VV",
+            "MMMM",
+            "A",
+            "123",
+            "IC"]
+
+        for roman in invalid_cases:
+            with self.subTest(roman=roman):
+                with self.assertRaises(ValueError):      
+                    roman_to_int(roman)
 
 # Run the tests
 if __name__ == '__main__':
