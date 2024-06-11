@@ -7,26 +7,26 @@ def roman_to_int(s: str) -> int:
         'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000
     }
 
-    if not s or not isinstance(s, str):
+    # Validate the input
+    if not isinstance(s, str) or not s:
         return 0
     
-    # Validate the input for invalid characters or invalid sequences
-    if not all(char in roman_dict for char in s) or re.search(r'(IIII|VV|XXXX|LL|CCCC|DD|MMMM|IL|IC|ID|IM|VX|XD|XM|LC|LD|LM|DM)', s):
-        return None    
+    if not re.fullmatch(r'^[IVXLCDM]+$', s):
+        return None
+    
+    invalid_patterns = re.compile(r'(IIII|VV|XXXX|LL|CCCC|DD|MMMM|IL|IC|ID|IM|VX|XD|XM|LC|LD|LM|DM)')
+    if invalid_patterns.search(s):
+        return None
 
-    prev_value = 0
     result = 0
+    prev_value = 0
 
-    # Iterate over the Roman numeral from the end to the beginning
-    for char in reversed(s):
+    for char in s:
         value = roman_dict[char]
-
-        # Handle subtractions (special cases)
-        if value < prev_value:
-            result -= value
+        if value > prev_value:
+            result += value - 2 * prev_value  # Adjust the previously added value
         else:
             result += value
-
         prev_value = value
 
     return result
