@@ -1,6 +1,6 @@
 import unittest
 
-# Function to convert roman numerals to an ineger
+# Convert a roman numeral to an ineger
 def roman_to_int(s: str) -> int:
 
     # Dictionary to map each Roman numeral character to its respective integer value
@@ -16,7 +16,7 @@ def roman_to_int(s: str) -> int:
 
     # Initialize variables
     prev_value = 0
-    total = 0
+    result = 0
 
     # Iterate over the Roman numberal from the end to the begining
     for char in reversed(s):
@@ -25,14 +25,14 @@ def roman_to_int(s: str) -> int:
 
         # If the current value is less than the previous value, subtract it
         if value < prev_value:
-            total -= value
+            result -= value
         else:
-            total += value
+            result += value
 
         # Update the previous value
         prev_value = value
 
-    return total
+    return result
 
 class TestRomanToInt(unittest.TestCase):    
 
