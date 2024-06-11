@@ -19,17 +19,11 @@ def roman_to_int(s: str) -> int:
 
     # Iterate over the Roman numeral from the end to the beginning
     for char in reversed(s):
-        value = roman_dict.get(char, 0)  # Use get with default value
+        value = roman_dict[char]
 
         # Handle subtractions (special cases)
         if value < prev_value:
-            # Check for valid subtraction combinations
-            if (char == 'I' and prev_value in {5, 10}) or \
-               (char == 'X' and prev_value in {50, 100}) or \
-               (char == 'C' and prev_value in {500, 1000}):
-                result -= value
-            else:
-                return None  # Invalid subtraction combination
+            result -= value
         else:
             result += value
 
