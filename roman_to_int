@@ -1,3 +1,5 @@
+import re
+
 def roman_to_int(s: str) -> int:
     roman_dict = {
         'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000
@@ -5,21 +7,19 @@ def roman_to_int(s: str) -> int:
     prev_value = 0
     result = 0
 
-    # Validate the input for any empty string
+    # Validate the input for any empty string or invalid characters
     if not s:
         return 0
+    if not re.match(r'^[IVXLCDM]+$', s):
+        return None
 
-    # Final validation for invalid repeat sequences
-    if "IIII" in s or "VV" in s or "XXXX" in s or "LL" in s or "CCCC" in s or "DD" in s or "MMMM" in s:
+    # Validation for invalid repeat sequences
+    if re.search(r'(IIII|VV|XXXX|LL|CCCC|DD|MMMM)', s):
         return None
 
     # Iterate over the Roman numeral from the end to the beginning
     for char in reversed(s):
-        value = roman_dict.get(char)
-
-        # Input validation: Check for invalid characters
-        if value is None:
-            return None
+        value = roman_dict[char]
 
         # Handle subtractions (special cases)
         if value < prev_value:
