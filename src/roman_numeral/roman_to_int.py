@@ -5,7 +5,9 @@ Converts a Roman numeral string to its corresponding integer value.
 import re
 
 def roman_to_int(s: str) -> int:
-    """ Define roman numeral values in dictionary"""
+    """
+    Define roman numeral values in dictionary
+    """
     roman_dict = {
         'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000
     }

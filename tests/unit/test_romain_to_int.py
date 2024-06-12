@@ -5,7 +5,9 @@ Unit tests for roman_to_int
 from src.roman_numeral.roman_to_int import roman_to_int
 
 def test_valid_roman_numerals_base():
-    """ test the core roman numerals are valid """
+    """
+    test the core roman numerals are valid
+    """
     assert roman_to_int("I") == 1
     assert roman_to_int("V") == 5
     assert roman_to_int("X") == 10
@@ -15,7 +17,9 @@ def test_valid_roman_numerals_base():
     assert roman_to_int("M") == 1000
 
 def test_valid_roman_numerals_combo():
-    """ test combinations are valid """
+    """
+    test combinations are valid
+    """
     assert roman_to_int("III") == 3
     assert roman_to_int("IV") == 4
     assert roman_to_int("IX") == 9
@@ -29,7 +33,9 @@ def test_valid_roman_numerals_combo():
     assert roman_to_int("MCMXCIV") == 1994
 
 def test_invalid_roman_numerals():
-    """ test invalid roman numners are not permitted """
+    """
+    test invalid roman numners are not permitted
+    """
     assert roman_to_int("IIII") is None
     assert roman_to_int("VV") is None
     assert roman_to_int("XXXX") is None
@@ -50,11 +56,15 @@ def test_invalid_roman_numerals():
     assert roman_to_int("DM") is None
 
 def test_int_empty_string():
-    """ test for empty string """
+    """
+    test for empty string
+    """
     assert roman_to_int("") == 0
 
 def test_non_string_inputs():
-    """ test for non string """
+    """
+    test for non string
+    """
     assert roman_to_int("") == 0
     assert roman_to_int(None) == 0
     assert roman_to_int(1234) == 0
@@ -63,7 +73,9 @@ def test_non_string_inputs():
     assert roman_to_int(3.14) == 0
 
 def test_non_roman_characters():
-    """ test non roman characters """
+    """
+    test non roman characters
+    """
     assert roman_to_int("A") is None
     assert roman_to_int("123") is None
     assert roman_to_int("IIIIIIIII") is None
