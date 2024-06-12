@@ -1,3 +1,7 @@
+"""
+Unit tests for calculator module functions.
+"""
+
 from src.getting_started.calculator import summation, subtraction, multiplication, division
 
 

@@ -1,4 +1,7 @@
-"""Converts a Roman numeral string to its corresponding integer value. """
+"""
+Converts a Roman numeral string to its corresponding integer value.
+"""
+
 import re
 
 def roman_to_int(s: str) -> int:
