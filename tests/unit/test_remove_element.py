@@ -1,5 +1,4 @@
-from src.remove_element import removeElement
-from src.remove_element import removeElementTwoPointers
+from src.remove_element import removeElement, removeElementTwoPointers
 
 def test_remove_element_one_occurance():
     nums = [3, 2, 2]
