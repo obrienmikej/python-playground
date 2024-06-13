@@ -1,14 +1,14 @@
-def removeElement(nums, val):
+def removeElement(nums: int, val: int) -> int:
     # Initialize a pointer for the position to insert elements that are not equal to val
-    e = 0    
+    k = 0    
 
     for i in range(len(nums)):
         if nums[i] != val:
             # If the current element is not equal to val, keep
-            nums[e] = nums[i]
-            e += 1
+            nums[k] = nums[i]
+            k += 1
     # Return the elements that are not equal to val
-    return e
+    return k
 
 def removeElementTwoPointers(nums, val):
   # Pointer i: for the current position
