@@ -1,4 +1,4 @@
-def removeElementOptionA(nums, val):
+def removeElement(nums, val):
     # Initialize a pointer for the position to insert elements that are not equal to val
     e = 0    
 
@@ -10,7 +10,7 @@ def removeElementOptionA(nums, val):
     # Return the elements that are not equal to val
     return e
 
-def removeElementOptionB(nums, val):
+def removeElementTwoPointers(nums, val):
   # Pointer i: for the current position
   # Pointer j: for the non-val elements
   i, j = 0, 0
