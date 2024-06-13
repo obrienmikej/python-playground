@@ -10,6 +10,7 @@ def roman_to_int(s: str) -> int:
 
     if not re.fullmatch(r'^[IVXLCDM]+$', s):
         return None
+
     invalid_patterns = re.compile(r'(IIII|VV|XXXX|LL|CCCC|DD|MMMM|IL|IC|ID|IM|VX|XD|XM|LC|LD|LM|DM)')
     if invalid_patterns.search(s):
         return None
