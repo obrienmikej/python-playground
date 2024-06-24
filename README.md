@@ -1,6 +1,6 @@
 # Overview
 
-Repo to use python
+Repo to use python.
 
 ## Environment
 
@@ -11,7 +11,7 @@ Repo to use python
 
 - Create a virtual environment and activate it to use the repo within VSCode.
 
-- Install the dependencies via the `requirements.txt` file using 
+- Install the dependencies via the `requirements.txt` file using.
 
 ```commandline
 pip install -r requirements.txt
