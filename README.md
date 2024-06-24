@@ -1,6 +1,7 @@
 # Overview
 
-Repo to use python.
+This repository contains Python code and setups for various projects, including
+CDKTF and Leetcode learning.
 
 ## Local Environment
 
@@ -17,7 +18,7 @@ Repo to use python.
 pip install -r requirements.txt
 ```
 
-# Pre-Reqs for CDK
+## Prerequisites for CDKTF
 
 - Setup to use CDKTF with this repo.
 
@@ -48,4 +49,4 @@ brew install cdktf
 
 ## Problems Sourced
 
-From leetcode, to learn and test python language. Help from ChatGPT to progress.
+Leetcode problems are used to learn and test Python skills. Assistance from ChatGPT has been utilized to make progress.
