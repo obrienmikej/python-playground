@@ -16,22 +16,26 @@ From leetcode, to learn and test python language. Help from ChatGPT and Gemini t
 
 # Pre-Reqs for CDK
 
+Terraform
 ```commandline
 terraform --version
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 ```
 
+Node
 ```commandline
 node --version
 brew install node
 ```
 
+Yarn
 ```commandline
 yarn --version
 brew install yarn
 ```
 
+cdktf
 ```commandline
 cdktf --version
 brew install cdktf
