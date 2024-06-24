@@ -2,7 +2,7 @@
 
 Repo to use python.
 
-## Environment
+## Local Environment
 
 - Visual Studio Code
 - Mac
