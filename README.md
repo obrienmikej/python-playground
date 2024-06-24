@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ## Prerequisites for CDKTF
 
-- Setup to use CDKTF with this repo.
+Setup to use CDKTF with this repo.
 
 ### Terraform
 ```commandline
