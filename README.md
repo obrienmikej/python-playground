@@ -9,11 +9,6 @@ Install the dependencies via the `requirements.txt` file using
 pip install -r requirements.txt
 ```
 
-# Problems Sourced
-
-From leetcode, to learn and test python language. Help from ChatGPT and Gemini to progress.
-
-
 # Pre-Reqs for CDK
 
 Terraform
@@ -39,4 +34,8 @@ cdktf
 ```commandline
 cdktf --version
 brew install cdktf
-```  
+```
+
+# Problems Sourced
+
+From leetcode, to learn and test python language. Help from ChatGPT and Gemini to progress.
